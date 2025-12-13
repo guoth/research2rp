@@ -1,0 +1,127 @@
+{{ extends "global/Page.html" }}
+{{ block title }}实验说明{{ endblock }}
+{{ block content }}
+
+<p>
+    你将参与几轮游戏，整个过程匿名进行，且<strong>每轮游戏规则可能不同</strong>，请仔细阅读并理解每轮游戏规则。
+</p>
+
+<p>
+    <strong>本轮游戏规则如下：</strong>
+</p>
+
+<p class="rule">
+    （1）<strong>角色分配</strong>：你和另外四位随机匹配的参与者组成一组（共<strong>5人</strong>），每人分别扮演一个固定角色：<strong>A、B、C 、D或E</strong>。
+</p>
+
+<p class="rule">
+    （2）<strong>初始代币</strong>：每位参与者在每轮都拥有<strong>{{ C.ENDOWMENT }}初始代币</strong>。
+</p>
+{% if current_logic == 1 %}
+<div class="rule rule-detail">
+    <span class="rule-index">（3）</span>
+    <span class="rule-label"><strong>角色任务</strong>：</span>
+    <div class="rule-content">
+        <p>如果你的角色为<strong>A、B、C 或 D</strong>，你需要独立决定，把多少代币（0–{{ C.ENDOWMENT }}之间任意整数）<strong>投入一个“公共池”，且剩余代币归自己所有</strong>。</p>
+        <p>如果你的角色为<strong>E</strong>，你需要观看A、B、C和D的决策之后，决定花多少代币<strong>增加/减少</strong>其中一人或多人的代币数，比率为<strong>1：3（即你付出1个代币，对方增加/减少3个代币）</strong>。</p>
+    </div>
+</div>
+{% else %}
+<div class="rule rule-detail">
+    <span class="rule-index">（3）</span>
+    <span class="rule-label"><strong>角色任务</strong>：</span>
+    <div class="rule-content">
+        <p>如果你的角色为<strong>A、B、C 或 D</strong>，你需要独立决定，如何<strong>把你的钱分配给公共池和转给玩家E，且剩余代币归自己所有</strong>。</p>
+        <p>
+            如果你的角色为<strong>E</strong>，你需要在观察 A、B、C、D 的决策后，对每位玩家的分配逐一做出决策：
+        </p>
+
+        <p>
+             ① 若接受某位玩家的分配：你<strong>不能减少该玩家</strong>的代币，且<strong>必须为该玩家</strong>增加代币（具体数量自行决定），增加比率为<strong>1 : 3</strong>（即你付出1个代币，对方获得3个代币）。
+        </p>
+
+        <p>
+             ② 若拒绝某位玩家的分配：你可以选择<strong>是否增加/减少该玩家（或多位玩家）</strong>的代币，比率仍为<strong>1 : 3</strong>（即你付出1个代币，对方增加/减少3个代币）。
+        </p>
+    </div>
+</div>
+{% endif %}
+
+<p class="rule">
+    （4）<strong>公共池收益</strong>：无论参与者投入多少，<strong>投入公共池的总金额将被翻一倍（即乘以2）后平均分配给小组内所有成员</strong>。
+</p>
+{% if current_logic == 1 %}
+<div class="rule rule-detail">
+    <span class="rule-index">（5）</span>
+    <span class="rule-label"><strong>游戏收益公式：（本公式无需记忆，理解即可）</span>
+    <div class="rule-content">
+        <p>A、B、C 或 D = 你剩余的代币数 + 公共池收益 ± E增加/减少你的代币数</strong></p>
+        <p><strong>E = 你剩余的代币数</strong></p>
+        <p><strong>例如：</strong>A投入公共池1个代币，剩下19个；小组公共池总投入10个，翻倍后每人分得5个。
+            且E若花费1个代币以1:3的比例减少A的3个代币，则A最终获得19 + 5 - 3 = 21个代币，而E自己剩下19个代币作为最终收益。</p>
+    </div>
+</div>
+{% else %}
+<div class="rule rule-detail">
+    <span class="rule-index">（5）</span>
+    <span class="rule-label"><strong>游戏收益公式：（本公式无需记忆，理解即可）</span>
+    <div class="rule-content">
+        <p>A、B、C 或 D = 你剩余的代币数 + 公共池收益 ± E增加/减少你的代币数</strong></p>
+        <p><strong>E = 你剩余的代币数＋A、B、C 和 D分配给你的代币数</strong></p>
+        <p><strong>例如：</strong>A向公共池投入1个代币，并分配1个代币给E，自己剩余18个；小组公共池总投入10个代币，翻倍后每人分得5个。
+            E接受A的分配，不减少A的代币，且花费1代币以1:3的比例给A增加3个代币，因此A最终收益为18 + 5 + 3 = 26个代币。而E最终获得自己剩下19个代币加上A分配的1个代币，共20代币。</p>
+    </div>
+</div>
+{% endif %}
+
+<p>
+    （6）在本次实验中，你将与其他参与者一起进行决策，你的每一个决定都会影响你自己和他人的收益，没有对错之分。
+</p>
+
+<p>
+    下一步你需回答3个问题，以检验你对规则的理解。(<strong>请确保你已完全理解规则，进入下一步后无法返回查看，只有答对才能继续</strong>)
+</p>
+
+<button class="otree-btn-next btn btn-primary" type="submit">下一步</button>
+
+{{ endblock }}
+
+
+{{ block styles }}
+<style>
+    /* 隐藏左上角的标题，但保留其位置 */
+    .otree-title, h1 { visibility: hidden !important; }
+    /* 将next按钮移到右下角 */
+    .otree-btn-next {
+        float: right !important;
+        margin-top: 20px !important;
+    }
+    .rule {
+        margin: 16px 0;
+    }
+    .rule-detail {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 0;
+        row-gap: 8px;
+        margin: 16px 0;
+    }
+    .rule-index {
+        grid-column: 1;
+        white-space: nowrap;
+    }
+    .rule-label {
+        grid-column: 2;
+        white-space: nowrap;
+    }
+    .rule-content {
+        grid-column: 2;
+    }
+    .rule-content p {
+        margin: 0;
+    }
+    .rule-content p + p {
+        margin-top: 8px;
+    }
+</style>
+{{ endblock }}

@@ -1,0 +1,171 @@
+{{ extends "global/Page.html" }}
+
+{{ block title }}情绪评估{{ endblock }}
+
+{{ block content }}
+
+
+
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 70vh; padding: 40px;">
+
+        <div style="background-color: #f8f9fa; padding: 30px; border-radius: 10px; max-width: 600px; width: 100%;">
+
+            {{ formfields }}
+
+            
+
+            <button class="otree-btn-next btn btn-primary" type="submit">下一步</button>
+
+        </div>
+
+    </div>
+
+
+
+{{ endblock }}
+
+
+
+{{ block styles }}
+
+<style>
+
+    /* 隐藏左上角的标题，但保留其位置 */
+
+    .otree-title, h1 { visibility: hidden !important; }
+
+    
+
+    /* 样式化单选按钮组 */
+
+    .form-group {
+
+        text-align: center;
+
+        margin: 20px 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+    
+
+    /* 字段标签样式 - 标题居中 */
+
+    .form-group > label:first-child {
+
+        font-size: 18px;
+
+        font-weight: bold;
+
+        margin-bottom: 25px;
+
+        display: block;
+
+        color: #333;
+
+        text-align: center;
+
+        width: 100%;
+
+    }
+
+    
+
+    /* RadioSelect容器样式 - 使选项组居中 */
+
+    .form-group > div {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        width: 100%;
+
+    }
+
+    
+
+    /* 选项标签样式 */
+
+    .form-group label:not(:first-child) {
+
+        font-size: 16px;
+
+        padding: 8px 15px;
+
+        margin: 4px 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        cursor: pointer;
+
+        border-radius: 5px;
+
+        transition: background-color 0.2s;
+
+        width: auto;
+
+        min-width: 200px;
+
+    }
+
+    
+
+    .form-group label:not(:first-child):hover {
+
+        background-color: #e9ecef;
+
+    }
+
+    
+
+    /* 单选按钮和文字紧密排列 - 减少间距 */
+
+    .form-group input[type="radio"] {
+
+        margin-right: 6px !important;
+
+        margin-left: 0 !important;
+
+        flex-shrink: 0;
+
+        width: auto;
+
+    }
+
+    
+
+    /* 确保单选按钮与文字紧贴 */
+
+    .form-group label:not(:first-child) input[type="radio"] {
+
+        margin-right: 6px !important;
+
+    }
+
+    
+
+    /* 将下一步按钮移到右下角 */
+
+    .otree-btn-next {
+
+        float: right !important;
+
+        margin-top: 20px !important;
+
+    }
+
+</style>
+
+{{ endblock }}
