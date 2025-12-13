@@ -1,4 +1,4 @@
-otree>=5.10.0
+otree==5.10.0
 psycopg2-binary
 dj-database-url
 websockets>=10.0,<13.0
