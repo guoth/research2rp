@@ -45,39 +45,63 @@ class Player(BasePlayer):
     )
     # 玩家角色字段（A、B、C 或 D）
     player_role = models.StringField()
-    # 理解检查问题1：公共池倍率（选择题，正确答案为2）
-    comprehension_q1 = models.IntegerField(
-        label="（1）公共池的倍率为多少？",
-        choices=[
-            [1, 'A. 1'],
-            [2, 'B. 2'],
-            [3, 'C. 3'],
-            [4, 'D. 4'],
-        ],
-        widget=widgets.RadioSelect
+    # 理解检查问题：计算题 - A的答案
+    comprehension_answer = models.IntegerField(
+        label="请问，A最终获得多少代币？（填数字即可）"
     )
-    # 理解检查问题2：角色数量（选择题，正确答案为5）
-    comprehension_q2 = models.IntegerField(
-        label="（2）每组中共有几个角色？",
-        choices=[
-            [1, 'A. 2'],
-            [2, 'B. 3'],
-            [3, 'C. 4'],
-            [4, 'D. 5'],
-        ],
-        widget=widgets.RadioSelect
+    # 理解检查问题：计算题 - E的答案
+    comprehension_answer_e = models.IntegerField(
+        label="请问，E最终获得多少代币？（填数字即可）"
     )
-    # 理解检查问题3：最终获得代币数（填空题，正确答案为3）
-    comprehension_q3 = models.IntegerField(
-        label='''（3）E的1代币可以增加/减少A、B、C或D的多少代币？''',
-        choices=[
-            [1, 'A. 1'],
-            [2, 'B. 2'],
-            [3, 'C. 3'],
-            [4, 'D. 4'],
-        ],
-        widget=widgets.RadioSelect
-    )
+    # 记录理解检验答错次数
+    comprehension_error_count = models.IntegerField(initial=0)
+    
+    # 估计他人行为 - 问题1：估计实际投入的百分比（0-20个代币，共21个字段）
+    estimate_actual_0 = models.IntegerField(min=0, max=100)
+    estimate_actual_1 = models.IntegerField(min=0, max=100)
+    estimate_actual_2 = models.IntegerField(min=0, max=100)
+    estimate_actual_3 = models.IntegerField(min=0, max=100)
+    estimate_actual_4 = models.IntegerField(min=0, max=100)
+    estimate_actual_5 = models.IntegerField(min=0, max=100)
+    estimate_actual_6 = models.IntegerField(min=0, max=100)
+    estimate_actual_7 = models.IntegerField(min=0, max=100)
+    estimate_actual_8 = models.IntegerField(min=0, max=100)
+    estimate_actual_9 = models.IntegerField(min=0, max=100)
+    estimate_actual_10 = models.IntegerField(min=0, max=100)
+    estimate_actual_11 = models.IntegerField(min=0, max=100)
+    estimate_actual_12 = models.IntegerField(min=0, max=100)
+    estimate_actual_13 = models.IntegerField(min=0, max=100)
+    estimate_actual_14 = models.IntegerField(min=0, max=100)
+    estimate_actual_15 = models.IntegerField(min=0, max=100)
+    estimate_actual_16 = models.IntegerField(min=0, max=100)
+    estimate_actual_17 = models.IntegerField(min=0, max=100)
+    estimate_actual_18 = models.IntegerField(min=0, max=100)
+    estimate_actual_19 = models.IntegerField(min=0, max=100)
+    estimate_actual_20 = models.IntegerField(min=0, max=100)
+    
+    # 估计他人行为 - 问题2：估计应该投入的百分比（0-20个代币，共21个字段）
+    estimate_should_0 = models.IntegerField(min=0, max=100)
+    estimate_should_1 = models.IntegerField(min=0, max=100)
+    estimate_should_2 = models.IntegerField(min=0, max=100)
+    estimate_should_3 = models.IntegerField(min=0, max=100)
+    estimate_should_4 = models.IntegerField(min=0, max=100)
+    estimate_should_5 = models.IntegerField(min=0, max=100)
+    estimate_should_6 = models.IntegerField(min=0, max=100)
+    estimate_should_7 = models.IntegerField(min=0, max=100)
+    estimate_should_8 = models.IntegerField(min=0, max=100)
+    estimate_should_9 = models.IntegerField(min=0, max=100)
+    estimate_should_10 = models.IntegerField(min=0, max=100)
+    estimate_should_11 = models.IntegerField(min=0, max=100)
+    estimate_should_12 = models.IntegerField(min=0, max=100)
+    estimate_should_13 = models.IntegerField(min=0, max=100)
+    estimate_should_14 = models.IntegerField(min=0, max=100)
+    estimate_should_15 = models.IntegerField(min=0, max=100)
+    estimate_should_16 = models.IntegerField(min=0, max=100)
+    estimate_should_17 = models.IntegerField(min=0, max=100)
+    estimate_should_18 = models.IntegerField(min=0, max=100)
+    estimate_should_19 = models.IntegerField(min=0, max=100)
+    estimate_should_20 = models.IntegerField(min=0, max=100)
+
     # 原有的贡献字段
     contribution = models.IntegerField(
     min=0, max=C.ENDOWMENT, label="你选择投入公共池的代币数为：")
@@ -88,6 +112,8 @@ class Player(BasePlayer):
 
     # 反应时字段（毫秒）：从看到投资决策页面到提交决策的时间
     reaction_time = models.FloatField(initial=0)
+    # 估计他人页面的反应时字段（毫秒）
+    estimate_reaction_time = models.FloatField(initial=0)
     # 页面加载时间戳
     page_load_time = models.FloatField(initial=0)
     
@@ -206,7 +232,9 @@ class ParticipantID(Page):
 
 
 class Instructions(Page):
-    """第二页：实验背景介绍"""
+    """第二页：实验背景介绍（包含理解检验）"""
+    form_model = 'player'
+    form_fields = ['comprehension_answer', 'comprehension_answer_e']
     
     @staticmethod
     def vars_for_template(player: Player):
@@ -214,31 +242,59 @@ class Instructions(Page):
         return {
             'current_logic': player.current_logic
         }
-
-
-class ComprehensionCheck(Page):
-    """第三页：理解检查"""
-    form_model = 'player'
-    form_fields = ['comprehension_q1', 'comprehension_q2', 'comprehension_q3']
     
-    def error_message(self, values):
-        """验证答案是否正确"""
+    @staticmethod
+    def error_message(player: Player, values):
+        """验证答案是否正确，根据轮次验证不同答案"""
         errors = []
         
-        # 检查问题1：公共池倍率，正确答案为2
-        if values.get('comprehension_q1') != 2:
-            errors.append('问题1答案不正确，请重新回答。')
+        # 根据轮次确定正确答案
+        if player.current_logic == 1:
+            # 第一轮：A=21, E=19
+            correct_answer_a = 21
+            correct_answer_e = 19
+            hint_a = 'A保留19个代币，公共池总额10个代币翻倍后为20个，平均每人分5个，E花费1个代币减少A的3个代币，所以A最终有19+5-3=21个代币。'
+            hint_e = 'E初始有20个代币，花费1个代币减少A的3个代币，所以E最终有20-1=19个代币。'
+        else:
+            # 第二轮：A=26, E=20
+            correct_answer_a = 26
+            correct_answer_e = 20
+            hint_a = 'A投入公共池1个，转给E1个，剩余18个；公共池总额10个代币翻倍后为20个，平均每人分5个；E接受分配不减少A的代币，且花费1个代币给A增加3个，所以A最终有18+5+3=26个代币。'
+            hint_e = 'E初始有20个代币，接受A分配的1个代币，花费1个代币给A增加3个，所以E最终有20+1-1=20个代币。'
         
-        # 检查问题2：角色数量，正确答案为5
-        if values.get('comprehension_q2') != 4:
-            errors.append('问题2答案不正确，请重新回答。')
+        # 验证A的答案
+        answer_a = values.get('comprehension_answer')
+        if answer_a != correct_answer_a:
+            error_count = player.participant.vars.get('comprehension_error_count', 0)
+            error_count += 1
+            player.participant.vars['comprehension_error_count'] = error_count
+            
+            if error_count < 3:
+                errors.append(f'A的答案不正确，请重新计算。')
+            else:
+                errors.append(f'A的答案不正确，请重新计算。提示：{hint_a}')
         
-        # 检查问题3：最终获得代币数，正确答案为3
-        if values.get('comprehension_q3') != 3:
-            errors.append('问题3答案不正确，请重新回答。')
+        # 验证E的答案
+        answer_e = values.get('comprehension_answer_e')
+        if answer_e != correct_answer_e:
+            error_count = player.participant.vars.get('comprehension_error_count_e', 0)
+            error_count += 1
+            player.participant.vars['comprehension_error_count_e'] = error_count
+            
+            if error_count < 3:
+                errors.append(f'E的答案不正确，请重新计算。')
+            else:
+                errors.append(f'E的答案不正确，请重新计算。提示：{hint_e}')
         
         if errors:
             return ' '.join(errors)
+    
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        """同步错误次数到 player 字段"""
+        error_count = player.participant.vars.get('comprehension_error_count', 0)
+        player.comprehension_error_count = error_count
+
 
 
 class ComprehensionWaitPage(WaitPage):
@@ -257,6 +313,56 @@ class MatchingWaitPage(Page):
 class MatchingSuccess(Page):
     """匹配成功页面"""
     timeout_seconds = 4
+class EstimateOthers(Page):
+    """估计他人行为页面"""
+    form_model = 'player'
+    form_fields = [
+        'estimate_actual_0', 'estimate_actual_1', 'estimate_actual_2', 'estimate_actual_3', 'estimate_actual_4',
+        'estimate_actual_5', 'estimate_actual_6', 'estimate_actual_7', 'estimate_actual_8', 'estimate_actual_9',
+        'estimate_actual_10', 'estimate_actual_11', 'estimate_actual_12', 'estimate_actual_13', 'estimate_actual_14',
+        'estimate_actual_15', 'estimate_actual_16', 'estimate_actual_17', 'estimate_actual_18', 'estimate_actual_19',
+        'estimate_actual_20',
+        'estimate_should_0', 'estimate_should_1', 'estimate_should_2', 'estimate_should_3', 'estimate_should_4',
+        'estimate_should_5', 'estimate_should_6', 'estimate_should_7', 'estimate_should_8', 'estimate_should_9',
+        'estimate_should_10', 'estimate_should_11', 'estimate_should_12', 'estimate_should_13', 'estimate_should_14',
+        'estimate_should_15', 'estimate_should_16', 'estimate_should_17', 'estimate_should_18', 'estimate_should_19',
+        'estimate_should_20',
+        'estimate_reaction_time',
+    ]
+    
+    @staticmethod
+    def error_message(player: Player, values):
+        """验证百分比总和是否为100"""
+        errors = []
+        
+        # 验证问题1：估计实际投入的百分比总和
+        actual_sum = sum([
+            values.get('estimate_actual_0') or 0, values.get('estimate_actual_1') or 0, values.get('estimate_actual_2') or 0,
+            values.get('estimate_actual_3') or 0, values.get('estimate_actual_4') or 0, values.get('estimate_actual_5') or 0,
+            values.get('estimate_actual_6') or 0, values.get('estimate_actual_7') or 0, values.get('estimate_actual_8') or 0,
+            values.get('estimate_actual_9') or 0, values.get('estimate_actual_10') or 0, values.get('estimate_actual_11') or 0,
+            values.get('estimate_actual_12') or 0, values.get('estimate_actual_13') or 0, values.get('estimate_actual_14') or 0,
+            values.get('estimate_actual_15') or 0, values.get('estimate_actual_16') or 0, values.get('estimate_actual_17') or 0,
+            values.get('estimate_actual_18') or 0, values.get('estimate_actual_19') or 0, values.get('estimate_actual_20') or 0,
+        ])
+        if actual_sum != 100:
+            errors.append(f'问题（1）的百分比总和为{actual_sum}%，应为100%。')
+        
+        # 验证问题2：估计应该投入的百分比总和
+        should_sum = sum([
+            values.get('estimate_should_0') or 0, values.get('estimate_should_1') or 0, values.get('estimate_should_2') or 0,
+            values.get('estimate_should_3') or 0, values.get('estimate_should_4') or 0, values.get('estimate_should_5') or 0,
+            values.get('estimate_should_6') or 0, values.get('estimate_should_7') or 0, values.get('estimate_should_8') or 0,
+            values.get('estimate_should_9') or 0, values.get('estimate_should_10') or 0, values.get('estimate_should_11') or 0,
+            values.get('estimate_should_12') or 0, values.get('estimate_should_13') or 0, values.get('estimate_should_14') or 0,
+            values.get('estimate_should_15') or 0, values.get('estimate_should_16') or 0, values.get('estimate_should_17') or 0,
+            values.get('estimate_should_18') or 0, values.get('estimate_should_19') or 0, values.get('estimate_should_20') or 0,
+        ])
+        if should_sum != 100:
+            errors.append(f'问题（2）的百分比总和为{should_sum}%，应为100%。')
+        
+        if errors:
+            return ' '.join(errors)
 
 
 class Contribute(Page):
@@ -338,12 +444,11 @@ page_sequence = [
     ConsentPage,
     ParticipantID, 
     Instructions, 
-    ComprehensionCheck, 
     ComprehensionWaitPage,
     MatchingWaitPage,
     MatchingSuccess,
+    EstimateOthers,
     Contribute, 
-    EmotionAssessment,
     ResultsWaitPage,
     PlayerEWaitPage,
     Results,

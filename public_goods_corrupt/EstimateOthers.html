@@ -1,0 +1,301 @@
+{{ extends "global/Page.html" }}
+{{ block title }}估计他人行为{{ endblock }}
+{{ block content }}
+
+    <p>
+        （1）请你估计：有多少比例的被试<strong>将会</strong>投入0个、1个、2个……20个代币到公共池？
+    </p>
+    <p style="font-size: 0.9em; color: #666;">
+        （请在每个数量下填写一个百分比数字，比如在0代币下面填"5"表示5%的被试向公共池投入0代币；如果没有被试选某个数量，就填"0"。所有数字加起来应为100。）
+    </p>
+    
+    <table class="estimation-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="11">将会投入公共池的代币数</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-label">被试比例（%）</td>
+                <td>{{ formfield 'estimate_actual_0' }}</td>
+                <td>{{ formfield 'estimate_actual_1' }}</td>
+                <td>{{ formfield 'estimate_actual_2' }}</td>
+                <td>{{ formfield 'estimate_actual_3' }}</td>
+                <td>{{ formfield 'estimate_actual_4' }}</td>
+                <td>{{ formfield 'estimate_actual_5' }}</td>
+                <td>{{ formfield 'estimate_actual_6' }}</td>
+                <td>{{ formfield 'estimate_actual_7' }}</td>
+                <td>{{ formfield 'estimate_actual_8' }}</td>
+                <td>{{ formfield 'estimate_actual_9' }}</td>
+                <td>{{ formfield 'estimate_actual_10' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="estimation-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="10">将会投入公共池的代币数</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-label">被试比例（%）</td>
+                <td>{{ formfield 'estimate_actual_11' }}</td>
+                <td>{{ formfield 'estimate_actual_12' }}</td>
+                <td>{{ formfield 'estimate_actual_13' }}</td>
+                <td>{{ formfield 'estimate_actual_14' }}</td>
+                <td>{{ formfield 'estimate_actual_15' }}</td>
+                <td>{{ formfield 'estimate_actual_16' }}</td>
+                <td>{{ formfield 'estimate_actual_17' }}</td>
+                <td>{{ formfield 'estimate_actual_18' }}</td>
+                <td>{{ formfield 'estimate_actual_19' }}</td>
+                <td>{{ formfield 'estimate_actual_20' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p class="sum-display">
+        <strong>问题（1）百分比总和：<span id="sum-actual">0</span>%</strong>
+    </p>
+    
+    <br>
+    
+    <p>
+        （2）请你估计：有多少比例的被试<strong>认为应该投入</strong>0个、1个、2个……20个代币到公共池？
+    </p>
+    <p style="font-size: 0.9em; color: #666;">
+        （请在每个数量下填写一个百分比数字，比如在0代币下面填"5"表示5%的被试认为应该向公共池投入0代币；如果没有被试选某个数量，就填"0"。所有数字加起来应为100。）
+    </p>
+    
+    <table class="estimation-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="11">认为应该投入公共池的代币数</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-label">被试比例（%）</td>
+                <td>{{ formfield 'estimate_should_0' }}</td>
+                <td>{{ formfield 'estimate_should_1' }}</td>
+                <td>{{ formfield 'estimate_should_2' }}</td>
+                <td>{{ formfield 'estimate_should_3' }}</td>
+                <td>{{ formfield 'estimate_should_4' }}</td>
+                <td>{{ formfield 'estimate_should_5' }}</td>
+                <td>{{ formfield 'estimate_should_6' }}</td>
+                <td>{{ formfield 'estimate_should_7' }}</td>
+                <td>{{ formfield 'estimate_should_8' }}</td>
+                <td>{{ formfield 'estimate_should_9' }}</td>
+                <td>{{ formfield 'estimate_should_10' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="estimation-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="10">认为应该投入公共池的代币数</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-label">被试比例（%）</td>
+                <td>{{ formfield 'estimate_should_11' }}</td>
+                <td>{{ formfield 'estimate_should_12' }}</td>
+                <td>{{ formfield 'estimate_should_13' }}</td>
+                <td>{{ formfield 'estimate_should_14' }}</td>
+                <td>{{ formfield 'estimate_should_15' }}</td>
+                <td>{{ formfield 'estimate_should_16' }}</td>
+                <td>{{ formfield 'estimate_should_17' }}</td>
+                <td>{{ formfield 'estimate_should_18' }}</td>
+                <td>{{ formfield 'estimate_should_19' }}</td>
+                <td>{{ formfield 'estimate_should_20' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p class="sum-display">
+        <strong>问题（2）百分比总和：<span id="sum-should">0</span>%</strong>
+    </p>
+
+    <input type="hidden" name="estimate_reaction_time" id="estimate_reaction_time" />
+    <button class="otree-btn-next btn btn-primary" type="submit" id="btn-next">下一步</button>
+
+{{ endblock }}
+
+{{ block styles }}
+<style>
+    /* 隐藏左上角的标题，但保留其位置 */
+    .otree-title, h1 { visibility: hidden !important; }
+    /* 将next按钮移到右下角 */
+    .otree-btn-next {
+        float: right !important;
+        margin-top: 20px !important;
+    }
+    .estimation-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+    .estimation-table th,
+    .estimation-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    .estimation-table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    .estimation-table .row-label {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 15px;
+        width: 150px;
+    }
+    .estimation-table input[type="number"] {
+        width: 60px;
+        text-align: center;
+    }
+    .estimation-table label {
+        display: none;
+    }
+    .sum-display {
+        font-size: 1.1em;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .sum-display span {
+        color: #007bff;
+        font-size: 1.2em;
+    }
+</style>
+{{ endblock }}
+
+{{ block scripts }}
+<script>
+    function calculateSum(inputs, sumElement) {
+        let sum = 0;
+        inputs.forEach(function(input) {
+            const value = parseFloat(input.value) || 0;
+            sum += value;
+        });
+        sumElement.textContent = sum;
+        if (sum === 100) {
+            sumElement.style.color = '#28a745';
+        } else {
+            sumElement.style.color = '#007bff';
+        }
+    }
+    
+    // 获取所有估计实际投入的输入框
+    const actualInputs = [];
+    for (let i = 0; i <= 20; i++) {
+        const input = document.querySelector('input[name="estimate_actual_' + i + '"]');
+        if (input) {
+            actualInputs.push(input);
+            input.addEventListener('input', function() {
+                calculateSum(actualInputs, document.getElementById('sum-actual'));
+            });
+        }
+    }
+    
+    // 获取所有估计应该投入的输入框
+    const shouldInputs = [];
+    for (let i = 0; i <= 20; i++) {
+        const input = document.querySelector('input[name="estimate_should_' + i + '"]');
+        if (input) {
+            shouldInputs.push(input);
+            input.addEventListener('input', function() {
+                calculateSum(shouldInputs, document.getElementById('sum-should'));
+            });
+        }
+    }
+    
+    // 初始化时计算总和
+    calculateSum(actualInputs, document.getElementById('sum-actual'));
+    calculateSum(shouldInputs, document.getElementById('sum-should'));
+
+    // 反应时记录
+    var pageTimeElapsed = 0;
+    var pageTimerID = -1;
+    
+    function pageTimer() {
+        pageTimeElapsed += 100;
+    }
+    
+    window.onload = function() {
+        if(pageTimerID == -1){
+            pageTimerID = setInterval(pageTimer, 100);
+        }
+    };
+    
+    document.getElementById("btn-next").onclick = function() {
+        document.getElementById("estimate_reaction_time").value = pageTimeElapsed;
+    };
+</script>
+{{ endblock }}
