@@ -112,7 +112,7 @@ class Player(BasePlayer):
 
     # 反应时字段（毫秒）：从看到投资决策页面到提交决策的时间
     reaction_time = models.FloatField(initial=0)
-    # 估计他人页面的反应时字段（毫秒）
+    # 估计他人页面的反应时字段（秒）
     estimate_reaction_time = models.FloatField(initial=0)
     # 页面加载时间戳
     page_load_time = models.FloatField(initial=0)
