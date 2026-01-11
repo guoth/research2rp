@@ -4,7 +4,7 @@ from os import environ
 SESSION_CONFIGS = [
     dict(
         name='public_goods_corrupt',
-        display_name="公共品博弈实验（行贿奖惩并用2）",
+        display_name="research2rp",
         app_sequence=['public_goods_corrupt'],
         num_demo_participants=4,
     ),
@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, 
     participation_fee=3.00,  # 固定参与费3元
-    doc="公共品博弈实验"
+    doc="research2rp"
 )
 
 PARTICIPANT_FIELDS = []
