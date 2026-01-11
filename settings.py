@@ -49,7 +49,7 @@ ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 DEMO_PAGE_INTRO_HTML = """
-欢迎参加公共品博弈实验！
+欢迎参加实验！
 """
 
 
