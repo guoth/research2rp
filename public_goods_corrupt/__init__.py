@@ -317,16 +317,16 @@ class EstimateOthers(Page):
     """估计他人行为页面"""
     form_model = 'player'
     form_fields = [
-        'estimate_actual_0', 'estimate_actual_1', 'estimate_actual_2', 'estimate_actual_3', 'estimate_actual_4',
-        'estimate_actual_5', 'estimate_actual_6', 'estimate_actual_7', 'estimate_actual_8', 'estimate_actual_9',
-        'estimate_actual_10', 'estimate_actual_11', 'estimate_actual_12', 'estimate_actual_13', 'estimate_actual_14',
-        'estimate_actual_15', 'estimate_actual_16', 'estimate_actual_17', 'estimate_actual_18', 'estimate_actual_19',
-        'estimate_actual_20',
         'estimate_should_0', 'estimate_should_1', 'estimate_should_2', 'estimate_should_3', 'estimate_should_4',
         'estimate_should_5', 'estimate_should_6', 'estimate_should_7', 'estimate_should_8', 'estimate_should_9',
         'estimate_should_10', 'estimate_should_11', 'estimate_should_12', 'estimate_should_13', 'estimate_should_14',
         'estimate_should_15', 'estimate_should_16', 'estimate_should_17', 'estimate_should_18', 'estimate_should_19',
         'estimate_should_20',
+        'estimate_actual_0', 'estimate_actual_1', 'estimate_actual_2', 'estimate_actual_3', 'estimate_actual_4',
+        'estimate_actual_5', 'estimate_actual_6', 'estimate_actual_7', 'estimate_actual_8', 'estimate_actual_9',
+        'estimate_actual_10', 'estimate_actual_11', 'estimate_actual_12', 'estimate_actual_13', 'estimate_actual_14',
+        'estimate_actual_15', 'estimate_actual_16', 'estimate_actual_17', 'estimate_actual_18', 'estimate_actual_19',
+        'estimate_actual_20',
         'estimate_reaction_time',
     ]
     
@@ -335,20 +335,7 @@ class EstimateOthers(Page):
         """验证百分比总和是否为100"""
         errors = []
         
-        # 验证问题1：估计实际投入的百分比总和
-        actual_sum = sum([
-            values.get('estimate_actual_0') or 0, values.get('estimate_actual_1') or 0, values.get('estimate_actual_2') or 0,
-            values.get('estimate_actual_3') or 0, values.get('estimate_actual_4') or 0, values.get('estimate_actual_5') or 0,
-            values.get('estimate_actual_6') or 0, values.get('estimate_actual_7') or 0, values.get('estimate_actual_8') or 0,
-            values.get('estimate_actual_9') or 0, values.get('estimate_actual_10') or 0, values.get('estimate_actual_11') or 0,
-            values.get('estimate_actual_12') or 0, values.get('estimate_actual_13') or 0, values.get('estimate_actual_14') or 0,
-            values.get('estimate_actual_15') or 0, values.get('estimate_actual_16') or 0, values.get('estimate_actual_17') or 0,
-            values.get('estimate_actual_18') or 0, values.get('estimate_actual_19') or 0, values.get('estimate_actual_20') or 0,
-        ])
-        if actual_sum != 100:
-            errors.append(f'问题（1）的百分比总和为{actual_sum}%，应为100%。')
-        
-        # 验证问题2：估计应该投入的百分比总和
+        # 验证问题1：估计应该投入的百分比总和
         should_sum = sum([
             values.get('estimate_should_0') or 0, values.get('estimate_should_1') or 0, values.get('estimate_should_2') or 0,
             values.get('estimate_should_3') or 0, values.get('estimate_should_4') or 0, values.get('estimate_should_5') or 0,
@@ -359,7 +346,20 @@ class EstimateOthers(Page):
             values.get('estimate_should_18') or 0, values.get('estimate_should_19') or 0, values.get('estimate_should_20') or 0,
         ])
         if should_sum != 100:
-            errors.append(f'问题（2）的百分比总和为{should_sum}%，应为100%。')
+            errors.append(f'问题（1）的百分比总和为{should_sum}%，应为100%。')
+        
+        # 验证问题2：估计实际投入的百分比总和
+        actual_sum = sum([
+            values.get('estimate_actual_0') or 0, values.get('estimate_actual_1') or 0, values.get('estimate_actual_2') or 0,
+            values.get('estimate_actual_3') or 0, values.get('estimate_actual_4') or 0, values.get('estimate_actual_5') or 0,
+            values.get('estimate_actual_6') or 0, values.get('estimate_actual_7') or 0, values.get('estimate_actual_8') or 0,
+            values.get('estimate_actual_9') or 0, values.get('estimate_actual_10') or 0, values.get('estimate_actual_11') or 0,
+            values.get('estimate_actual_12') or 0, values.get('estimate_actual_13') or 0, values.get('estimate_actual_14') or 0,
+            values.get('estimate_actual_15') or 0, values.get('estimate_actual_16') or 0, values.get('estimate_actual_17') or 0,
+            values.get('estimate_actual_18') or 0, values.get('estimate_actual_19') or 0, values.get('estimate_actual_20') or 0,
+        ])
+        if actual_sum != 100:
+            errors.append(f'问题（2）的百分比总和为{actual_sum}%，应为100%。')
         
         if errors:
             return ' '.join(errors)

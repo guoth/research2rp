@@ -3,96 +3,7 @@
 {{ block content }}
 
 <p>
-    （1）请你估计：有多少比例的被试<strong>将会</strong>投入0个、1个、2个……20个代币到公共池？
-</p>
-<p style="font-size: 0.9em; color: #666;">
-    （请在每个数量下填写一个百分比数字，比如在0代币下面填"5"表示5%的被试向公共池投入0代币；如果没有被试选某个数量，就填"0"。所有数字加起来应为100。）
-</p>
-
-<table class="estimation-table">
-    <thead>
-        <tr>
-            <th></th>
-            <th colspan="11">将会投入公共池的代币数</th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>0</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-            <th>10</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="row-label">被试比例（%）</td>
-            <td>{{ formfield 'estimate_actual_0' }}</td>
-            <td>{{ formfield 'estimate_actual_1' }}</td>
-            <td>{{ formfield 'estimate_actual_2' }}</td>
-            <td>{{ formfield 'estimate_actual_3' }}</td>
-            <td>{{ formfield 'estimate_actual_4' }}</td>
-            <td>{{ formfield 'estimate_actual_5' }}</td>
-            <td>{{ formfield 'estimate_actual_6' }}</td>
-            <td>{{ formfield 'estimate_actual_7' }}</td>
-            <td>{{ formfield 'estimate_actual_8' }}</td>
-            <td>{{ formfield 'estimate_actual_9' }}</td>
-            <td>{{ formfield 'estimate_actual_10' }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="estimation-table">
-    <thead>
-        <tr>
-            <th></th>
-            <th colspan="10">将会投入公共池的代币数</th>
-        </tr>
-        <tr>
-            <th></th>
-            <th>11</th>
-            <th>12</th>
-            <th>13</th>
-            <th>14</th>
-            <th>15</th>
-            <th>16</th>
-            <th>17</th>
-            <th>18</th>
-            <th>19</th>
-            <th>20</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="row-label">被试比例（%）</td>
-            <td>{{ formfield 'estimate_actual_11' }}</td>
-            <td>{{ formfield 'estimate_actual_12' }}</td>
-            <td>{{ formfield 'estimate_actual_13' }}</td>
-            <td>{{ formfield 'estimate_actual_14' }}</td>
-            <td>{{ formfield 'estimate_actual_15' }}</td>
-            <td>{{ formfield 'estimate_actual_16' }}</td>
-            <td>{{ formfield 'estimate_actual_17' }}</td>
-            <td>{{ formfield 'estimate_actual_18' }}</td>
-            <td>{{ formfield 'estimate_actual_19' }}</td>
-            <td>{{ formfield 'estimate_actual_20' }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<p class="sum-display">
-    <strong>问题（1）百分比总和：<span id="sum-actual">0</span>%</strong>
-</p>
-
-<br>
-
-<p>
-    （2）请你估计：有多少比例的被试<strong>认为应该投入</strong>0个、1个、2个……20个代币到公共池？
+    （1）请你估计：有多少比例的被试<strong>认为应该投入</strong>0个、1个、2个……20个代币到公共池？
 </p>
 <p style="font-size: 0.9em; color: #666;">
     （请在每个数量下填写一个百分比数字，比如在0代币下面填"5"表示5%的被试认为应该向公共池投入0代币；如果没有被试选某个数量，就填"0"。所有数字加起来应为100。）
@@ -175,7 +86,96 @@
 </table>
 
 <p class="sum-display">
-    <strong>问题（2）百分比总和：<span id="sum-should">0</span>%</strong>
+    <strong>问题（1）百分比总和：<span id="sum-should">0</span>%</strong>
+</p>
+
+<br>
+
+<p>
+    （2）请你估计：有多少比例的被试<strong>将会</strong>投入0个、1个、2个……20个代币到公共池？
+</p>
+<p style="font-size: 0.9em; color: #666;">
+    （请在每个数量下填写一个百分比数字，比如在0代币下面填"5"表示5%的被试向公共池投入0代币；如果没有被试选某个数量，就填"0"。所有数字加起来应为100。）
+</p>
+
+<table class="estimation-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="11">将会投入公共池的代币数</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="row-label">被试比例（%）</td>
+            <td>{{ formfield 'estimate_actual_0' }}</td>
+            <td>{{ formfield 'estimate_actual_1' }}</td>
+            <td>{{ formfield 'estimate_actual_2' }}</td>
+            <td>{{ formfield 'estimate_actual_3' }}</td>
+            <td>{{ formfield 'estimate_actual_4' }}</td>
+            <td>{{ formfield 'estimate_actual_5' }}</td>
+            <td>{{ formfield 'estimate_actual_6' }}</td>
+            <td>{{ formfield 'estimate_actual_7' }}</td>
+            <td>{{ formfield 'estimate_actual_8' }}</td>
+            <td>{{ formfield 'estimate_actual_9' }}</td>
+            <td>{{ formfield 'estimate_actual_10' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="estimation-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan="10">将会投入公共池的代币数</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>11</th>
+            <th>12</th>
+            <th>13</th>
+            <th>14</th>
+            <th>15</th>
+            <th>16</th>
+            <th>17</th>
+            <th>18</th>
+            <th>19</th>
+            <th>20</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="row-label">被试比例（%）</td>
+            <td>{{ formfield 'estimate_actual_11' }}</td>
+            <td>{{ formfield 'estimate_actual_12' }}</td>
+            <td>{{ formfield 'estimate_actual_13' }}</td>
+            <td>{{ formfield 'estimate_actual_14' }}</td>
+            <td>{{ formfield 'estimate_actual_15' }}</td>
+            <td>{{ formfield 'estimate_actual_16' }}</td>
+            <td>{{ formfield 'estimate_actual_17' }}</td>
+            <td>{{ formfield 'estimate_actual_18' }}</td>
+            <td>{{ formfield 'estimate_actual_19' }}</td>
+            <td>{{ formfield 'estimate_actual_20' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="sum-display">
+    <strong>问题（2）百分比总和：<span id="sum-actual">0</span>%</strong>
 </p>
 
 <input type="hidden" name="estimate_reaction_time" id="estimate_reaction_time" />
